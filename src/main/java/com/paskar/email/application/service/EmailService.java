@@ -1,7 +1,6 @@
 package com.paskar.email.application.service;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paskar.email.application.console.Email;
 import com.paskar.email.application.repositiory.EmailStorage;
 import org.slf4j.Logger;
@@ -22,13 +21,11 @@ public class EmailService {
 
     private final JavaMailSender emailSender;
     private final EmailStorage storage;
-    private final ObjectMapper mapper;
 
     @Autowired
-    public EmailService(JavaMailSender emailSender, EmailStorage storage, ObjectMapper mapper) {
+    public EmailService(JavaMailSender emailSender, EmailStorage storage) {
         this.emailSender = emailSender;
         this.storage = storage;
-        this.mapper = mapper;
     }
 
     @Scheduled(fixedRate = 60000) //1 min
