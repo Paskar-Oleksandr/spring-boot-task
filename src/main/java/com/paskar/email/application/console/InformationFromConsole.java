@@ -1,7 +1,7 @@
 package com.paskar.email.application.console;
 
 
-import org.springframework.stereotype.Component;
+import com.paskar.email.application.model.Email;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,6 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component
 public class InformationFromConsole {
 
     private static final DateTimeFormatter FORMATTER =

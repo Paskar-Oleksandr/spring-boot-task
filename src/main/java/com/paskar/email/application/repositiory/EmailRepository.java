@@ -1,7 +1,7 @@
 package com.paskar.email.application.repositiory;
 
 
-import com.paskar.email.application.console.Email;
+import com.paskar.email.application.model.Email;
 
 import java.io.IOException;
 import java.util.List;

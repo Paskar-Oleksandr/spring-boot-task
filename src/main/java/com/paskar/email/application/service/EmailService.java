@@ -1,7 +1,7 @@
 package com.paskar.email.application.service;
 
 
-import com.paskar.email.application.console.Email;
+import com.paskar.email.application.model.Email;
 import com.paskar.email.application.repositiory.EmailStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

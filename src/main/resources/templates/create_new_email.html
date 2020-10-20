@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<style>
+    body {
+        background: url(data:image/jpeg;base64,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) no-repeat fixed center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center
+    }
+
+    html,
+    body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        margin-top: auto;
+        text-align: center;
+    }
+</style>
+<body>
+<form action="#" th:action="@{/emails-create}" th:object="${email}" method="post">
+    <label for="recipient">Recipient</label>
+    <input class="form-control" placeholder="Recipient"
+           id="recipient" type="email" th:field="*{recipient}"
+           title="Contact's email (format: xxx@xxx.xxx)"
+           pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*">
+
+    <label for="subject">Subject</label>
+    <input type="text" th:field="*{subject}" id="subject" placeholder="Subject">
+    <br>
+    <br>
+
+    <label for="localdate">When do you want to send this email?</label>
+    <br>
+    <input type="datetime-local" th:field="*{date}"
+           id="localdate" name="date" placeholder="MM dd yyyy HH:mm"/>
+    <br>
+    <br>
+    <label for="body">Body</label>
+    <br>
+    <textarea name="text" th:field="*{body}" id="body" cols="20" rows="8" placeholder="Main text of massage"></textarea>
+    <br>
+    <br>
+    <input type="submit" value="Send an email">
+    <input type="reset" value="Reset">
+</form>
+
+<footer class="mt-auto">
+    <div class="inner">
+        <p>This little project was created for InventorSoft Academy, by <a
+                href="https://github.com/Paskar-Oleksandr">@Oleksandr_Paskar</a>.</p>
+    </div>
+</footer>
+</body>
+</html>

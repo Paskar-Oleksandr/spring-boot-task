@@ -3,7 +3,7 @@ package com.paskar.email.application.repositiory;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paskar.email.application.console.Email;
+import com.paskar.email.application.model.Email;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
@@ -32,7 +32,6 @@ public class EmailStorage implements EmailRepository {
             mapper.writeValue(out, email);
         }
     }
-
 
     @Override
     public List<Email> findAll() throws IOException {
