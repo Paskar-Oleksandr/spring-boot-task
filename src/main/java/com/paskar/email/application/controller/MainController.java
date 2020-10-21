@@ -2,6 +2,7 @@ package com.paskar.email.application.controller;
 
 import com.paskar.email.application.model.Email;
 import com.paskar.email.application.repositiory.EmailRepository;
+import com.paskar.email.application.repositiory.EmailStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +22,10 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private final EmailRepository repository;
+    private final EmailStorage repository;
 
     @Autowired
-    public MainController(EmailRepository repository) {
+    public MainController(EmailStorage repository) {
         this.repository = repository;
     }
 
@@ -57,7 +58,7 @@ public class MainController {
                                  @RequestParam String body,
                                  Model model) throws IOException {
         List<Email> list = new ArrayList<>();
-        list.add(new Email(recipient,subject,body,dateTime));
+        list.add(new Email(recipient, subject, body, dateTime));
         repository.save(list);
         return "redirect:/main";
     }
