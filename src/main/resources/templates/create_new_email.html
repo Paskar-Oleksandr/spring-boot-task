@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create user</title>
@@ -35,27 +35,26 @@
     }
 </style>
 <body>
-<form action="#" th:action="@{/emails-create}" th:object="${email}" method="post">
+<form action="/emails-create" method="post">
     <label for="recipient">Recipient</label>
     <input class="form-control" placeholder="Recipient"
-           id="recipient" type="email" th:field="*{recipient}"
+           id="recipient" type="email" name="recipient"
            title="Contact's email (format: xxx@xxx.xxx)"
            pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*">
 
     <label for="subject">Subject</label>
-    <input type="text" th:field="*{subject}" id="subject" placeholder="Subject">
+    <input type="text" name="subject" id="subject" placeholder="Subject">
     <br>
     <br>
 
     <label for="localdate">When do you want to send this email?</label>
     <br>
-    <input type="datetime-local" th:field="*{date}"
-           id="localdate" name="date" placeholder="MM dd yyyy HH:mm"/>
+    <input type="datetime-local" id="localdate" name="dateTime" placeholder="dd MM yyyy HH:mm"/>
     <br>
     <br>
     <label for="body">Body</label>
     <br>
-    <textarea name="text" th:field="*{body}" id="body" cols="20" rows="8" placeholder="Main text of massage"></textarea>
+    <textarea name="body" id="body" cols="20" rows="8" placeholder="Main text of massage"></textarea>
     <br>
     <br>
     <input type="submit" value="Send an email">

@@ -22,7 +22,7 @@ public class Email {
 
     private String body;
 
-    @JsonFormat(pattern = "MM dd yyyy HH:mm")
+    @JsonFormat(pattern = "dd MM yyyy HH:mm")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime date;
