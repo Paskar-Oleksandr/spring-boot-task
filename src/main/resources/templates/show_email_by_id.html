@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Emails</title>
+    <title>Info about email</title>
 </head>
 <style>
     body {
@@ -29,42 +28,34 @@
         text-align:center;
     }
 </style>
+
 <body>
-        <h2>Emails</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id of email</th>
-                <th>Recipient</th>
-                <th>Subject</th>
-                <th>Main text of massage</th>
-                <th>Send date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="emails : ${emails}">
-                <td th:text="${emails.id}"></td>
-                <td th:text="${emails.recipient}"></td>
-                <td th:text="${emails.subject}"></td>
-                <td th:text="${emails.body}"></td>
-                <td th:text="${emails.date}"></td>
-            </tr>
-            </tbody>
-        </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <p><a href="/main">Back to main</a></p>
-    <form action="/" method="POST">
-        <button type="submit">Logout</button>
-    </form>
-</div>
+<h1>Email Info</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Recipient</th>
+        <th>Subject</th>
+        <th>Main text of massage</th>
+        <th>Send date</th>
+    </tr>
+    </thead>
+    <tbody>
+        <td th:text="${email.id}"></td>
+        <td th:text="${email.recipient}"></td>
+        <td th:text="${email.subject}"></td>
+        <td th:text="${email.body}"></td>
+        <td th:text="${email.date}"></td>
+    </tbody>
+</table>
+
 <footer class="mt-auto">
-<div class="inner">
-    <p>This little project was created for InventorSoft Academy, by <a
-            href="https://github.com/Paskar-Oleksandr">@Oleksandr_Paskar</a>.</p>
-</div>
+    <div class="inner">
+        <p>This little project was created for InventorSoft Academy, by <a
+                href="https://github.com/Paskar-Oleksandr">@Oleksandr_Paskar</a>.</p>
+    </div>
 </footer>
 </body>
 </html>

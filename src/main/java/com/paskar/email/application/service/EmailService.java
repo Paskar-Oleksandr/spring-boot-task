@@ -2,7 +2,7 @@ package com.paskar.email.application.service;
 
 
 import com.paskar.email.application.model.Email;
-import com.paskar.email.application.repositiory.EmailStorage;
+import com.paskar.email.application.repositiory.EmailDaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -20,17 +19,17 @@ public class EmailService {
     private static final Logger LOG = LoggerFactory.getLogger(EmailService.class);
 
     private final JavaMailSender emailSender;
-    private final EmailStorage storage;
+    private final EmailDaoImpl emailDao;
 
     @Autowired
-    public EmailService(JavaMailSender emailSender, EmailStorage storage) {
+    public EmailService(JavaMailSender emailSender, EmailDaoImpl storage) {
         this.emailSender = emailSender;
-        this.storage = storage;
+        this.emailDao = storage;
     }
 
     @Scheduled(fixedRate = 60000) //1 min
-    public void sendSimpleEmail() throws MailException, IOException {
-        List<Email> emailsNearDeliveryDate = storage.findEmailsNearDeliveryDate();
+    public void sendSimpleEmail() throws MailException {
+        List<Email> emailsNearDeliveryDate = emailDao.findEmailsNearDeliveryDate();
         for (Email emails : emailsNearDeliveryDate) {
 
             SimpleMailMessage message = new SimpleMailMessage();
@@ -41,7 +40,8 @@ public class EmailService {
 
             LOG.info("All information about your email {}:", emails.toString());
             this.emailSender.send(message);
+
+            emailDao.deleteById(emails.getId());
         }
-        storage.deletingMassagesThatWereSent();
     }
 }

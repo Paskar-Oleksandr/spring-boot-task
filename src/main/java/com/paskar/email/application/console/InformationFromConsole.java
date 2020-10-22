@@ -6,6 +6,7 @@ import com.paskar.email.application.model.Email;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -23,7 +24,7 @@ public class InformationFromConsole {
         String recipient = recipientValidation();
         String subject = emailSubject();
         String body = bodyValidation();
-        LocalDateTime date = dateValidation();
+        LocalDate date = dateValidation();
         return new Email(recipient, subject, body, date);
     }
 
@@ -60,8 +61,8 @@ public class InformationFromConsole {
         } while (true);
     }
 
-    public LocalDateTime dateValidation() throws IOException {
-        LocalDateTime time = null;
+    public LocalDate dateValidation() throws IOException {
+        LocalDate time = null;
         System.out.println("Pay attention to a date template, date has to be entered only in this format\n" +
                 "month day year hours:minutes - for example - 09 12 2020 20:56\n" +
                 "Enter date when it is necessary to send the letter:");
@@ -69,7 +70,7 @@ public class InformationFromConsole {
         do {
             try {
                 count = 0;
-                time = LocalDateTime.parse(READER.readLine(), FORMATTER);
+                time = LocalDate.parse(READER.readLine(), FORMATTER);
             } catch (DateTimeParseException exception) {
                 count++;
                 System.err.println("Pay attention to a date template, and try again");

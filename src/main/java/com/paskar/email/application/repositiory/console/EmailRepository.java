@@ -1,4 +1,4 @@
-package com.paskar.email.application.repositiory;
+package com.paskar.email.application.repositiory.console;
 
 
 import com.paskar.email.application.model.Email;

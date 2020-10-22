@@ -1,9 +1,10 @@
-package com.paskar.email.application.repositiory;
+package com.paskar.email.application.repositiory.console;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paskar.email.application.model.Email;
+import com.paskar.email.application.repositiory.console.EmailRepository;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;

@@ -1,4 +1,4 @@
-package com.paskar.email.application.security.configuration;
+package com.paskar.email.application.configuration;
 
 import com.paskar.email.application.model.Role;
 import org.springframework.context.annotation.Bean;
