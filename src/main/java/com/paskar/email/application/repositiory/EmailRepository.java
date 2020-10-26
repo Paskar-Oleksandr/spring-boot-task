@@ -4,6 +4,7 @@ package com.paskar.email.application.repositiory;
 import com.paskar.email.application.model.Email;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EmailRepository {
@@ -14,4 +15,8 @@ public interface EmailRepository {
     List<Email> findEmailsNearDeliveryDate() throws IOException;
 
     void deletingMassagesThatWereSent() throws IOException;
+
+    void deleteEmailByDate(LocalDateTime time) throws IOException;
+
+    void createEmail(Email email) throws IOException;
 }

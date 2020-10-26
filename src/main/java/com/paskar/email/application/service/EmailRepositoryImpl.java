@@ -1,9 +1,10 @@
-package com.paskar.email.application.repositiory;
+package com.paskar.email.application.service;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paskar.email.application.model.Email;
+import com.paskar.email.application.repositiory.EmailRepository;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EmailStorage implements EmailRepository {
+public class EmailRepositoryImpl implements EmailRepository {
     private final static String baseFile = "emailList.json";
 
     private final ObjectMapper mapper;
 
-    public EmailStorage(ObjectMapper mapper) {
+    public EmailRepositoryImpl(ObjectMapper mapper) {
         this.mapper = mapper;
     }
 
@@ -65,5 +66,18 @@ public class EmailStorage implements EmailRepository {
             }
         }
         mapper.writeValue(new File(baseFile), resultList);
+    }
+
+    @Override
+    public void deleteEmailByDate(LocalDateTime time) throws IOException {
+        List<Email> emails = findAll();
+        emails.removeIf(email -> email.getDate().equals(time));
+    }
+
+    @Override
+    public void createEmail(Email email) throws IOException {
+        List<Email> list = new ArrayList<>();
+        list.add(new Email(email.getRecipient(), email.getSubject(), email.getBody(), email.getDate()));
+        save(list);
     }
 }
