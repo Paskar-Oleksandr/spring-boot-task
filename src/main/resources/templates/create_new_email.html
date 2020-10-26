@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create user</title>
@@ -35,7 +35,7 @@
     }
 </style>
 <body>
-<form action="/emails-create" method="post">
+<form action="#" th:action="@{/emails-create}" th:object="${email}" method="post"  enctype="multipart/form-data">
     <label for="recipient">Recipient</label>
     <input class="form-control" placeholder="Recipient"
            id="recipient" type="email" name="recipient"

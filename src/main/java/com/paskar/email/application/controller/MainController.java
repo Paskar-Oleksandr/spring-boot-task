@@ -4,6 +4,7 @@ import com.paskar.email.application.model.Email;
 import com.paskar.email.application.service.EmailRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Controller
+@RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MainController {
 
     private final EmailRepositoryImpl repository;
@@ -47,8 +50,7 @@ public class MainController {
 
     @PostMapping("/emails-create")
     @PreAuthorize("hasAnyAuthority('read/write')")
-    public String createNewEmail(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                 @RequestBody Email email) throws IOException {
+    public String createNewEmail(@RequestBody Email email) throws IOException {
         repository.createEmail(email);
         return "redirect:/main";
     }
