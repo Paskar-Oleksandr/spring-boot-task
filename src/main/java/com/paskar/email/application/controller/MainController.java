@@ -3,16 +3,15 @@ package com.paskar.email.application.controller;
 import com.paskar.email.application.model.Email;
 import com.paskar.email.application.service.EmailRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
@@ -44,13 +43,14 @@ public class MainController {
 
     @GetMapping("/emails-create")
     @PreAuthorize("hasAnyAuthority('read/write')")
-    public String createEmail() {
+    public String createEmail(Model model) {
+        model.addAttribute("email", new Email());
         return "create_new_email";
     }
 
     @PostMapping("/emails-create")
     @PreAuthorize("hasAnyAuthority('read/write')")
-    public String createNewEmail(@RequestBody Email email) throws IOException {
+    public String createNewEmail(@ModelAttribute("email") Email email) throws IOException {
         repository.createEmail(email);
         return "redirect:/main";
     }
