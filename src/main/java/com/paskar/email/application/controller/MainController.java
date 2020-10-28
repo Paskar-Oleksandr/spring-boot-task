@@ -35,28 +35,28 @@ public class MainController {
     }
 
     @GetMapping("/emails")
-    @PreAuthorize("hasAnyAuthority('delete')")
+    @PreAuthorize("hasAnyAuthority('read','delete')")
     public String showAllEmails(Model model) throws IOException {
         model.addAttribute("emails", repository.findAll());
         return "emails";
     }
 
     @GetMapping("/emails-create")
-    @PreAuthorize("hasAnyAuthority('read/write')")
+    @PreAuthorize("hasAnyAuthority('write')")
     public String createEmail(Model model) {
         model.addAttribute("email", new Email());
         return "create_new_email";
     }
 
     @PostMapping("/emails-create")
-    @PreAuthorize("hasAnyAuthority('read/write')")
+    @PreAuthorize("hasAnyAuthority('write')")
     public String createNewEmail(@ModelAttribute("email") Email email) throws IOException {
         repository.createEmail(email);
         return "redirect:/main";
     }
 
     @DeleteMapping("/delete/email/{time}")
-    @PreAuthorize("hasAnyAuthority('delete')")
+    @PreAuthorize("hasAnyAuthority('read','delete')")
     public void deleteByEmailByDate(@PathVariable LocalDateTime time) throws IOException {
         repository.deleteEmailByDate(time);
     }

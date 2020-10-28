@@ -3,8 +3,10 @@ package com.paskar.email.application.model;
 import lombok.Getter;
 
 public enum Permission {
-    WRITE_READ("read/write"),
+    WRITE("write"),
+    READ("read"),
     DELETE("delete");
+
 
     @Getter
     private String permission;
